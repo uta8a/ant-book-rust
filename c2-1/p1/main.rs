@@ -1,4 +1,4 @@
-// p25 kujibiki
+// p30 fact
 macro_rules! input {
     (source = $s:expr, $($r:tt)*) => {
         let mut iter = $s.split_whitespace();
@@ -51,53 +51,20 @@ macro_rules! read_value {
         $next().parse::<$t>().expect("Parse error")
     };
 }
+
 mod vig {
-    pub trait S {
-        fn binary_search(&self, key: i64) -> i64;
-    }
-    impl S for Vec<i64> {
-        fn binary_search(&self, key: i64) -> i64 {
-            let mut ng: i64 = -1;
-            let mut ok: i64 = self.len() as i64;
-            loop {
-                if (ok - ng).abs() <= 1 {
-                    break;
-                }
-                let mid = (ok + ng) / 2;
-                if self[mid as usize] >= key {
-                    ok = mid;
-                } else {
-                    ng = mid;
-                }
-            }
-            ok
+    pub fn fact(n: u64) -> u64 {
+        if n == 1 {
+            return 1;
         }
+        (n * fact(n - 1)) as u64
     }
 }
 
 fn main() {
     input! {
-        n:usize,
-        m:i64,
-        k:[i64; n],
+        n:u64,
     }
-    let mut ans: bool = false;
-    let mut cur: Vec<i64> = vec![];
-    for i in 0..n {
-        for j in 0..n {
-            cur.push(k[i] + k[j]);
-        }
-    }
-    // println!("{:?}", cur);
-    for i in 0..cur.len() {
-        let flag = vig::S::binary_search(&cur, m - cur[i] as i64);
-        if flag != -1 && flag != cur.len() as i64 && cur[flag as usize]+cur[i]==m{
-            ans = true;
-        }
-    }
-    if ans {
-        println!("Yes");
-    } else {
-        println!("No");
-    }
+    let ans = vig::fact(n);
+    println!("{}", ans);
 }
