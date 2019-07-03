@@ -28,3 +28,11 @@ oj test -c ./main
 
 - ref: プログラミングコンテストチャレンジブック
 
+# todo
+
+- fibonacciのベンチマーク [参考](https://muunyblue.github.io/115c51eb37365df2d4f4e2482b964822.html#_6)
+- fibonacci_memoはvig直下に定数をおいているので、impl N(Number Theory)以下に置きたい。
+
+# Misc
+
+- ライブラリは `vig::{S, N, G, ...}::function`という感じにしたい。それぞれのimplはSearch、Number Theory、Graphなどを表す。

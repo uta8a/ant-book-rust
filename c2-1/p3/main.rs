@@ -51,9 +51,39 @@ macro_rules! read_value {
         $next().parse::<$t>().expect("Parse error")
     };
 }
-mod vig{
-	pub fn fibonacci
+// ref: https://muunyblue.github.io/115c51eb37365df2d4f4e2482b964822.html#_6
+mod vig {
+    pub const MAX_N: usize = 1000;
+    struct FibMemo {
+        memo: [i32; MAX_N],
+    }
+
+    impl FibMemo {
+        fn new() -> Self {
+            FibMemo { memo: [0; MAX_N] }
+        }
+
+        fn calc(&mut self, n: i32) -> i32 {
+            if n < 2 {
+                return n;
+            }
+            if self.memo[n as usize] != 0 {
+                return self.memo[n as usize];
+            }
+            self.memo[n as usize] = self.calc(n - 2) + self.calc(n - 1);
+            self.memo[n as usize]
+        }
+    }
+
+    pub fn fib_memo(n: i32) -> i32 {
+        let mut f = FibMemo::new();
+        f.calc(n)
+    }
 }
-fn main(){
-	
+fn main() {
+    input! {
+        n:i32, // n<47
+    }
+	println!("{}", vig::fib_memo(n));
+	println!("{}", vig::MAX_N);
 }
