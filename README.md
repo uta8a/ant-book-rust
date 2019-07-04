@@ -31,7 +31,7 @@ oj test -c ./main
 # todo
 
 - fibonacciのベンチマーク [参考](https://muunyblue.github.io/115c51eb37365df2d4f4e2482b964822.html#_6)
-- fibonacci_memoはvig直下に定数をおいているので、impl N(Number Theory)以下に置きたい。
+- fibonacci_memoはvig直下に定数をおいているので、impl N(Number Theory)以下に置きたい。`vig::N::SIZE`のようにしたい。
 
 # Misc
 
